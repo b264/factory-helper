@@ -1,12 +1,8 @@
-Faker
+Factory Helper
 =====
-This gem is a port of Perl's Data::Faker library that generates fake data.
+This gem began as a fork of stympy's Faker which is a port of Perl's Data::Faker library that generates fake data.
 
-It comes in very handy for taking screenshots (taking screenshots for my
-project, [Catch the Best](http://catchthebest.com/) was the original impetus
-for the creation of this gem), having real-looking test data, and having your
-database populated with more than one or two records while you're doing
-development.
+Its primary purpose is to facilitate software testing by allowing factories to have a solid source of random data, but can be used for many other purposes as well as in production code.
 
 Installing
 ----------
