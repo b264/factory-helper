@@ -15,7 +15,7 @@ end
 I18n.load_path += Dir[File.join(mydir, 'locales', '*.yml')]
 
 
-module Faker
+module FactoryHelper
   class Config
     @locale = nil
 
@@ -106,7 +106,7 @@ module Faker
           text = prefix
 
           # If the class has the method, call it, otherwise
-          # fetch the transation (i.e., faker.name.first_name)
+          # fetch the transation (i.e., factory_helper.name.first_name)
           text += cls.respond_to?(meth) ? cls.send(meth) : fetch("#{(kls || self).to_s.split('::').last.downcase}.#{meth.downcase}")
 
           # And tack on spaces, commas, etc. left over in the string
@@ -118,7 +118,7 @@ module Faker
       # locale is specified
       def translate(*args)
         opts = args.last.is_a?(Hash) ? args.pop : {}
-        opts[:locale] ||= Faker::Config.locale
+        opts[:locale] ||= FactoryHelper::Config.locale
         opts[:raise] = true
         I18n.translate(*(args.push(opts)))
       rescue I18n::MissingTranslationData
@@ -136,12 +136,12 @@ module Faker
       # E.g., in your locale file, create a
       #   name:
       #     girls_name: ["Alice", "Cheryl", "Tatiana"]
-      # Then you can call Faker::Name.girls_name and it will act like #first_name
+      # Then you can call FactoryHelper::Name.girls_name and it will act like #first_name
       def method_missing(m, *args, &block)
         super unless @flexible_key
 
         # Use the alternate form of translate to get a nil rather than a "missing translation" string
-        if translation = translate(:faker)[@flexible_key][m]
+        if translation = translate(:factory_helper)[@flexible_key][m]
           translation.respond_to?(:sample) ? translation.sample : translation
         else
           super
@@ -156,6 +156,7 @@ module Faker
     end
   end
 end
+#Faker= FactoryHelper
 
 require_relative 'factory-helper/address'
 require_relative 'factory-helper/code'
