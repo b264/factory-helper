@@ -157,7 +157,7 @@ module FactoryHelper
   end
 end
 
-Faker= FactoryHelper
+Faker= FactoryHelper unless Object.const_defined?('Faker')
 
 require_relative 'factory-helper/address'
 require_relative 'factory-helper/code'
