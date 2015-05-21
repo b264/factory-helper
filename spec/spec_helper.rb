@@ -4,6 +4,7 @@ Coveralls.wear_merged!
 require 'rubygems'
 require 'yaml'
 require File.expand_path(File.dirname(__FILE__) + '/../lib/factory-helper')
+require File.expand_path(File.dirname(__FILE__) + '/../lib/patches/rand')
 
 YAML::ENGINE.yamler = 'psych' if defined? YAML::ENGINE
 
@@ -14,6 +15,10 @@ end
 I18n.enforce_available_locales = true
 
 RSpec.configure do |config|
+  if ENV['EDGE_CASE']
+    Object.include FactoryHelper::MonkeyPatch::Kernel
+  end
+
   config.before(:suite) do
     FactoryHelper::Config.locale = nil
   end
