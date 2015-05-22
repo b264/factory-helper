@@ -35,6 +35,11 @@ class TestFactoryHelperName < Test::Unit::TestCase
   def test_genderized_name
     test_female_name
     test_male_name
+puts FactoryHelper::String.random
+puts FactoryHelper::String.random
+puts FactoryHelper::String.random
+puts FactoryHelper::String.random
+puts FactoryHelper::String.random
   end
 
 private
