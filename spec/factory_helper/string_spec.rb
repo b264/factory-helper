@@ -54,4 +54,10 @@ RSpec.describe FactoryHelper::String do
       end
     end
   end
+
+  puts FactoryHelper::String.random
+  puts FactoryHelper::String.random
+  puts FactoryHelper::String.random
+  puts FactoryHelper::String.random
+  puts FactoryHelper::String.random
 end
